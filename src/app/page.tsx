@@ -1,8 +1,24 @@
 "use client";
 
+import { useMemo } from "react";
+import { projectFinances } from "@/lib/calculator";
+import FinanceTimeline from "@/components/FinanceTimeline";
 import styles from "./page.module.css";
 
 export default function Home() {
+  const projection = useMemo(
+    () =>
+      projectFinances(
+        { monthlyIncome: 3000, monthlyExpenses: 2000 },
+        [
+          { id: "1", type: "one-off-expense", name: "Holiday", amount: -2000, month: 3 },
+          { id: "2", type: "income-change", name: "Pay rise", amount: 500, month: 6 },
+        ],
+        12
+      ),
+    []
+  );
+
   return (
     <div className={styles.page}>
       <header className={styles.header}>
@@ -12,7 +28,7 @@ export default function Home() {
         </p>
       </header>
       <main className={styles.main}>
-        <p className={styles.placeholder}>App components coming soon.</p>
+        <FinanceTimeline data={projection.months} />
       </main>
     </div>
   );

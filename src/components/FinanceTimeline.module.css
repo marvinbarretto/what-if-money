@@ -1,0 +1,113 @@
+.container {
+  width: 100%;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+}
+
+.title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+}
+
+.chart {
+  width: 100%;
+  overflow: visible;
+}
+
+.chart :global(.axis) text {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  fill: var(--color-text-secondary);
+}
+
+.chart :global(.axis) line,
+.chart :global(.axis) path {
+  stroke: var(--color-border);
+}
+
+.chart :global(.grid) line {
+  stroke: var(--color-border);
+  stroke-opacity: 0.5;
+  stroke-dasharray: 2 4;
+}
+
+.chart :global(.grid) path {
+  stroke: none;
+}
+
+.chart :global(.area-positive) {
+  fill: var(--color-positive);
+  fill-opacity: 0.15;
+}
+
+.chart :global(.area-negative) {
+  fill: var(--color-negative);
+  fill-opacity: 0.15;
+}
+
+.chart :global(.line) {
+  fill: none;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.chart :global(.line-positive) {
+  stroke: var(--color-positive);
+}
+
+.chart :global(.line-negative) {
+  stroke: var(--color-negative);
+}
+
+.chart :global(.zero-line) {
+  stroke: var(--color-text-secondary);
+  stroke-opacity: 0.3;
+  stroke-dasharray: 4 4;
+}
+
+.chart :global(.tooltip-dot) {
+  stroke: var(--color-surface);
+  stroke-width: 2;
+}
+
+.tooltip {
+  position: absolute;
+  pointer-events: none;
+  background: var(--color-text);
+  color: var(--color-bg);
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.15s;
+  z-index: 10;
+}
+
+.tooltipVisible {
+  opacity: 1;
+}
+
+.tooltipLabel {
+  font-weight: 600;
+  margin-bottom: 0.125rem;
+}
+
+.tooltipValue {
+  font-family: var(--font-mono);
+}
+
+.empty {
+  text-align: center;
+  color: var(--color-text-secondary);
+  padding: 3rem 0;
+  font-size: 0.9375rem;
+}
