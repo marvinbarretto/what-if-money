@@ -1,23 +1,21 @@
 "use client";
 
-import { useMemo } from "react";
-import { projectFinances } from "@/lib/calculator";
+import { useFinanceState } from "@/hooks/useFinanceState";
+import IncomeForm from "@/components/IncomeForm";
+import ScenarioList from "@/components/ScenarioList";
 import FinanceTimeline from "@/components/FinanceTimeline";
 import styles from "./page.module.css";
 
 export default function Home() {
-  const projection = useMemo(
-    () =>
-      projectFinances(
-        { monthlyIncome: 3000, monthlyExpenses: 2000 },
-        [
-          { id: "1", type: "one-off-expense", name: "Holiday", amount: -2000, month: 3 },
-          { id: "2", type: "income-change", name: "Pay rise", amount: 500, month: 6 },
-        ],
-        12
-      ),
-    []
-  );
+  const {
+    inputs,
+    setInputs,
+    scenarios,
+    addScenario,
+    removeScenario,
+    projection,
+    hasInputs,
+  } = useFinanceState();
 
   return (
     <div className={styles.page}>
@@ -28,7 +26,13 @@ export default function Home() {
         </p>
       </header>
       <main className={styles.main}>
-        <FinanceTimeline data={projection.months} />
+        <IncomeForm inputs={inputs} onChange={setInputs} />
+        <FinanceTimeline data={hasInputs ? projection.months : []} />
+        <ScenarioList
+          scenarios={scenarios}
+          onAdd={addScenario}
+          onRemove={removeScenario}
+        />
       </main>
     </div>
   );
