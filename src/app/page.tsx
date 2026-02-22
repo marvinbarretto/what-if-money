@@ -20,20 +20,29 @@ export default function Home() {
   return (
     <div className={styles.page}>
       <header className={styles.header}>
+        <div className={styles.tagline}>No spreadsheets. No stress.</div>
         <h1 className={styles.title}>What If Money</h1>
         <p className={styles.subtitle}>
-          See how your financial future changes with every decision
+          Add what-if scenarios and watch your financial future morph in real
+          time. Will you be okay? Now you can see.
         </p>
       </header>
       <main className={styles.main}>
-        <IncomeForm inputs={inputs} onChange={setInputs} />
-        <FinanceTimeline data={hasInputs ? projection.months : []} />
-        <ScenarioList
-          scenarios={scenarios}
-          onAdd={addScenario}
-          onRemove={removeScenario}
-        />
+        <div className={styles.sidebar}>
+          <IncomeForm inputs={inputs} onChange={setInputs} />
+          <ScenarioList
+            scenarios={scenarios}
+            onAdd={addScenario}
+            onRemove={removeScenario}
+          />
+        </div>
+        <div className={styles.chartArea}>
+          <FinanceTimeline data={hasInputs ? projection.months : []} />
+        </div>
       </main>
+      <footer className={styles.footer}>
+        Built by Marvin Barretto
+      </footer>
     </div>
   );
 }
