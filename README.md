@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# What If Money
+
+A visual financial scenario planner. Enter your income and expenses, add "what if" scenarios, and watch your financial future morph in real time through interactive D3 charts.
+
+**Target user**: Anyone anxious about money who wants to answer "will I be okay?" without spreadsheets.
+
+## How It Works
+
+1. Enter monthly income and recurring expenses
+2. See a 12-month timeline chart of your financial trajectory
+3. Add what-if scenarios: holiday, job loss, pay rise, new subscription
+4. Watch the chart animate as scenarios stack
+
+## Tech Stack
+
+- **Next.js** (App Router) with TypeScript
+- **D3.js** for interactive charts with smooth morphing transitions
+- **CSS Modules** for styling
+- **Jest** for unit tests
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src/
+├── app/              Next.js app router pages
+├── components/
+│   ├── FinanceTimeline   D3 chart with animated transitions
+│   ├── IncomeForm        Monthly income/expense input
+│   ├── ScenarioCard      Individual scenario display
+│   └── ScenarioList      Scenario management + add form
+├── hooks/
+│   └── useFinanceState   Core state management
+└── lib/
+    ├── calculator.ts     Pure financial projection engine
+    ├── calculator.test.ts
+    └── types.ts          Shared TypeScript types
+```
 
-## Learn More
+## Tests
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npx jest
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+10 tests covering the calculator engine: basic projection, break-even, negative cash flow, one-off expenses, income changes, recurring expenses, stacked scenarios, job loss simulation.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Roadmap
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [ ] Share as image export
+- [ ] Firebase Auth + save/load scenarios
+- [ ] Pro tier (unlimited scenarios, longer timeframes, advanced scenario types)
+- [ ] Compare scenarios side by side
+- [ ] 3D "landscape" view (Three.js stretch goal)
