@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "status": "node $HOME/.jimbo/hooks/jimbo-api/scripts/claude-code-hooks/handoff.mjs status"
   },
   "dependencies": {
     "@types/d3": "^7.4.3",
